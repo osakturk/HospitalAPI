@@ -22,13 +22,13 @@ public class CustomExceptionHandler
         ErrorResponse error = new ErrorResponse("Bad Request", details);
         return new ResponseEntity(error, HttpStatus.BAD_REQUEST);
     }
-    
+
     @ExceptionHandler(Exception.class)
-    public final ResponseEntity<Object> handleAllExceptions(Exception ex, WebRequest request)
+    public final ResponseEntity<Object> handlerParameterException(Exception ex, WebRequest request)
     {
         List<String> details = new ArrayList<>();
         details.add(ex.getLocalizedMessage());
-        ErrorResponse error = new ErrorResponse("Server Error", details);
-        return new ResponseEntity(error, HttpStatus.INTERNAL_SERVER_ERROR);
+        ErrorResponse error = new ErrorResponse("Missing parameter", details);
+        return new ResponseEntity(error, HttpStatus.BAD_REQUEST);
     }
 }
